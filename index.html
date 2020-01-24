@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style_game.css">
+    <title>Jeu du Plus ou du Moins</title>
+  </head>
+  <body>
+
+
+    <form>
+      <input type="number" name="guess" />
+      <input type="submit" value="Tester" />
+    </form>
+    <p id="answer"></p>
+    <script>
+      var randomNumber = Math.round(Math.random() * 100);
+      var $form = document.querySelector("form");
+      var $guess = document.querySelector("input[name=guess]");
+      var $answer = document.querySelector("#answer");
+
+      $form.addEventListener("submit", function(event) {
+        var guess = $guess.value;
+
+        if (guess > randomNumber) {
+            var $newElementAnswer =document.createElement("p");
+            var $newAnswer = document.createTextNode("c'est moins / "+guess);
+            $newElementAnswer.appendChild($newAnswer)
+          $answer.appendChild($newElementAnswer);
+        }
+        if (guess < randomNumber) {
+            var $newElementAnswer =document.createElement("p");
+            var $newAnswer = document.createTextNode("c'est plus / "+guess);
+            $newElementAnswer.appendChild($newAnswer)
+          $answer.appendChild($newElementAnswer);
+        }
+            
+        
+        if (guess == randomNumber){
+            $answer.innerHTML = "You win";
+
+        }
+        if (guess == randomNumber){
+          var $winImage =document.createElement("img");
+          $winImage.src= "https://thumbs.dreamstime.com/z/vector-stock-comic-explosion-bang-boom-you-win-text-comic-cartoon-bang-exsplosion-you-win-text-126376540.jpg";
+          $winImage.width=840;
+          $winImage.height=526
+          document.querySelector("body").appendChild($winImage);
+
+        }
+
+        event.preventDefault();
+      });
+    </script>
+  </body>
+</html>
